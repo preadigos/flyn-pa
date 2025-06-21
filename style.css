@@ -1,0 +1,142 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: url('selva.jpg') center center/cover no-repeat fixed;
+    /* Fondo de respaldo si no carga la imagen */
+    background-color: #a1c4fd;
+    color: #fff;
+    text-shadow: 0 2px 8px #222, 0 0 2px #000;
+}
+
+h1, #status {
+    color: #fff;
+    text-shadow: 0 2px 8px #222, 0 0 2px #000;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+#status {
+    margin-top: 20px;
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+}
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(3, 80px);
+    grid-template-rows: repeat(3, 80px);
+    gap: 5px;
+    position: relative;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.32);
+    margin-bottom: 10px;
+}
+
+.cell {
+    width: 80px;
+    height: 80px;
+    background: #fff;
+    border: 2px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    font-size: 2.5rem;
+    color: transparent;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.cell:hover {
+    background: #e0e0e0;
+}
+
+.cell.x {
+    color: #e53935;
+    font-weight: bold;
+    text-shadow: 0 2px 8px #ffb3b3;
+}
+
+.cell.o {
+    color: #1976d2;
+    font-weight: bold;
+    text-shadow: 0 2px 8px #b3d1ff;
+}
+
+.cell.winner {
+    background: linear-gradient(135deg, #fffbe6 60%, #ffe0e0 100%);
+    box-shadow: 0 0 16px 2px #ffd700;
+    border-color: #ffd700;
+    animation: winner-pop 0.3s;
+    color: inherit;
+}
+
+@keyframes winner-pop {
+    0% { transform: scale(1); }
+    60% { transform: scale(1.15); }
+    100% { transform: scale(1); }
+}
+
+#winner-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+#reset {
+    margin-top: 10px;
+    padding: 8px 16px;
+    font-size: 1rem;
+    cursor: pointer;
+    background: linear-gradient(90deg, #1976d2 0%, #e53935 100%);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: background 0.2s;
+}
+
+#reset:hover {
+    background: linear-gradient(90deg, #e53935 0%, #1976d2 100%);
+}
+
+.cell img {
+    display: block;
+    margin: 0 auto;
+    pointer-events: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+}
+
+#fireworks-container {
+    position: fixed;
+    left: 0; top: 0; width: 100vw; height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.firework {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    opacity: 0.85;
+    animation: firework-explode 1.8s cubic-bezier(.4,0,.2,1) forwards;
+    box-shadow:
+        0 0 16px 4px #fff,
+        0 0 32px 8px currentColor;
+}
+
+@keyframes firework-explode {
+    0% { transform: scale(0.2) translateY(0); opacity: 1; }
+    60% { transform: scale(1.2) translateY(-60px); opacity: 1; }
+    100% { transform: scale(0.8) translateY(-120px); opacity: 0; }
+}
